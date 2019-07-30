@@ -1,0 +1,41 @@
+{
+    "extends": [
+        "tslint:latest",
+        "tslint-eslint-rules",
+        "tslint-config-prettier"
+    ],
+    "rules": {
+        "member-ordering": false,
+        "object-literal-sort-keys": false,
+        "member-access": false,
+        "interface-name": false,
+        "no-implicit-dependencies": false,
+        "ordered-imports": false,
+        "no-floating-promises": true,
+        "triple-equals": true,
+        "no-unused-expression": true,
+        "no-var-keyword": true,
+        "no-internal-module": true,
+        "no-trailing-whitespace": true,
+        "no-null-keyword": false,
+        "switch-default": false,
+        "interface-over-type-literal": false,
+        "no-submodule-imports": false,
+        "curly": false,
+        "no-return-await": false,
+        "no-shadowed-variable": false,
+        "comment-format": false,
+        "no-var-requires": false,
+        "prefer-object-spread": false,
+        "only-arrow-functions": false,
+        "no-object-literal-type-assertion": false,
+        "array-type": false,
+        "variable-name": false,
+        "class-name": false,
+        "prefer-for-of": false,
+        "jsdoc-format": false,
+        "no-angle-bracket-type-assertion": false,
+        "no-empty": false,
+        "no-duplicate-imports": false
+    }
+}

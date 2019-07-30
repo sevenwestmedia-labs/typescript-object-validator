@@ -1,0 +1,29 @@
+{
+    "name": "typescript-object-validator",
+    "version": "0.0.0",
+    "description": "TypeScript first object validator",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "prepack": "yarn build",
+        "build": "tsc -p tsconfig.build.json",
+        "lint": "yarn tslint --project .",
+        "test": "jest",
+        "verify": "yarn tsc -p tsconfig.json && yarn test && yarn lint",
+        "cz": "git-cz"
+    },
+    "author": "Jake Ginnivan",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^23.3.10",
+        "commitizen": "^3.0.5",
+        "cz-conventional-changelog": "^2.1.0",
+        "jest": "^23.6.0",
+        "semantic-release": "^15.13.2",
+        "ts-jest": "^23.10.5",
+        "tslint": "^5.12.0",
+        "tslint-config-prettier": "^1.17.0",
+        "tslint-eslint-rules": "^5.4.0",
+        "typescript": "^3.2.2"
+    }
+}
