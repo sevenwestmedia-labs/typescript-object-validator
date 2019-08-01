@@ -1,6 +1,16 @@
-import { validateObjectShape, arrayOf, optional } from './'
+import { validateObjectShape, arrayOf, optional } from '..'
 
 it('validates a valid simple object', () => {
+    interface ExpectedResultType {
+        one: string
+        two: number
+        three: boolean
+        four: string[]
+        five: boolean[]
+        six: number[]
+        seven: unknown
+        eight: string | undefined
+    }
     const result = validateObjectShape(
         'Test obj',
         {
@@ -20,9 +30,15 @@ it('validates a valid simple object', () => {
             five: arrayOf('boolean'),
             six: arrayOf('number'),
             seven: 'unknown',
-            eight: optional('boolean')
+            eight: optional('string')
         }
     )
+
+    // This ensures types are correct, afaik there is no $AssertType in eslint yet
+    if (result.valid) {
+        const parsed: ExpectedResultType = result.result
+        expect(parsed).toBeDefined()
+    }
 
     expect(result).toMatchObject({
         valid: true,
@@ -111,7 +127,8 @@ it('validates a invalid simple object', () => {
             four: arrayOf('string'),
             five: arrayOf('boolean'),
             six: arrayOf('number'),
-            seven: 'unknown'
+            seven: 'unknown',
+            eight: optional('string')
         }
     )
 
