@@ -6,8 +6,10 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "prepack": "yarn build",
-        "build": "tsc -p tsconfig.build.json",
-        "lint": "yarn tslint --project .",
+        "build": "yarn build:es2015 && yarn build:cjs",
+        "build:es2015": "tsc -p tsconfig.build.json --module es2015 --target es2015 --outDir dist/es2015",
+        "build:cjs": "tsc -p tsconfig.build.json --module commonjs --target es5 --outDir dist/cjs",
+        "lint": "eslint --ext .js,.ts src",
         "test": "jest",
         "verify": "yarn tsc -p tsconfig.json && yarn test && yarn lint",
         "cz": "git-cz"
@@ -15,15 +17,17 @@
     "author": "Jake Ginnivan",
     "license": "MIT",
     "devDependencies": {
-        "@types/jest": "^23.3.10",
-        "commitizen": "^3.0.5",
-        "cz-conventional-changelog": "^2.1.0",
-        "jest": "^23.6.0",
-        "semantic-release": "^15.13.2",
-        "ts-jest": "^23.10.5",
-        "tslint": "^5.12.0",
-        "tslint-config-prettier": "^1.17.0",
-        "tslint-eslint-rules": "^5.4.0",
-        "typescript": "^3.2.2"
+        "@types/jest": "^24.0.16",
+        "commitizen": "^4.0.3",
+        "cz-conventional-changelog": "^3.0.2",
+        "eslint-config-wanews-base": "^1.0.0",
+        "jest": "^24.8.0",
+        "semantic-release": "^15.13.19",
+        "ts-jest": "^24.0.2",
+        "typescript": "^3.5.3",
+        "tslib": "^1.10.0"
+    },
+    "peerDependencies": {
+        "tslib": "^1.10.0"
     }
 }

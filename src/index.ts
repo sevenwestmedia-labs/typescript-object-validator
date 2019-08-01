@@ -36,10 +36,10 @@ export type ValidatedType<
     ? number[]
     : T extends 'boolean'[]
     ? boolean[]
-    : T extends ObjectShape<any>
+    : T extends ObjectShape<object>
     ? { [key in keyof T]: ValidatedType<T[key]> }
     : T extends (infer U)[]
-    ? U extends ObjectShape<any>
+    ? U extends ObjectShape<object>
         ? { [key in keyof U]: ValidatedType<U[key]> }[]
         : unknown
     : unknown
@@ -52,12 +52,12 @@ export interface ValidationOptions {
     coerceValidObjectIntoArray?: boolean
 }
 
-export type OptionalShape<T> = {
+export interface OptionalShape<T> {
     __validationOptionalProp: true
     keyType: ValidationKeyType<T>
 }
 
-export type ValidationKeyType<T = any> =
+export type ValidationKeyType<T = object> =
     | 'unknown'
     | 'number'
     | 'string'
@@ -113,7 +113,7 @@ export function optional<T extends ValidationKeyType<T>>(
     }
 }
 
-export function validateObjectShape<T extends ObjectShape<any>>(
+export function validateObjectShape<T extends ObjectShape<object>>(
     objectDescription: string,
     validationItem: unknown,
     expectedObjectShape: T,
@@ -121,6 +121,7 @@ export function validateObjectShape<T extends ObjectShape<any>>(
 ): ValidationResult<T> {
     // We rebuild the object as a deep clone
     // this will contain the result if there are no validation checks
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let validValue: any
     const errors: string[] = []
     try {
@@ -204,10 +205,13 @@ function isOptional<T>(
 ): wat is OptionalShape<T> {
     return typeof wat === 'object' && '__validationOptionalProp' in wat
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isObject(wat: any): wat is { [key: string]: any } {
     return typeof wat === 'object'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function validateValue<T extends ValidationKeyType<any>>(
     valueDescription: string,
     value: unknown,
