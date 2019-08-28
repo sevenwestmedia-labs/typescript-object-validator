@@ -85,6 +85,7 @@ export const validationTypes = {
 }
 
 // We need this generic type so we can merge ObjectShapes and not lose info
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export interface ObjectShape<T> {
     [key: string]: ValidationKeyType<T> | OptionalShape<T>
