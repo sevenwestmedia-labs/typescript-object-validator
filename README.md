@@ -1,6 +1,6 @@
 # Typescript Object Validator
 
-[![Build Status](https://travis-ci.com/sevenwestmedia-labs/typescript-object-validator.svg?branch=master)](https://travis-ci.com/sevenwestmedia-labs/typescript-object-validator)
+[![Build Status](https://travis-ci.com/sevenwestmedia-labs/typescript-object-validator.svg?branch=master)](https://travis-ci.com/sevenwestmedia-labs/typescript-object-validator) [![Greenkeeper badge](https://badges.greenkeeper.io/sevenwestmedia-labs/typescript-object-validator.svg)](https://greenkeeper.io/)
 
 A simple library for typescript projects to validating object shapes. You can use this package to declare the shape you'd like an object to align to. This is handy when you have a complex object (for example, an API response) and want to validate the object, AND have typescript recognize the shape.
 
