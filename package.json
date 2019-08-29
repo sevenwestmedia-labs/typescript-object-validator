@@ -11,25 +11,21 @@
         "build:cjs": "tsc -p tsconfig.build.json --module commonjs --target es5 --outDir dist/cjs",
         "lint": "eslint --ext .js,.ts src",
         "test": "jest",
-        "verify": "yarn tsc -p tsconfig.json && yarn test && yarn lint",
-        "cz": "git-cz"
+        "verify": "yarn tsc -p tsconfig.json && yarn test && yarn lint"
     },
     "author": "Jake Ginnivan",
     "license": "MIT",
     "devDependencies": {
-        "@types/jest": "^24.0.16",
+        "@types/jest": "^24.0.18",
         "@typescript-eslint/eslint-plugin": "^2.0.0",
         "@typescript-eslint/parser": "^2.0.0",
-        "commitizen": "^4.0.3",
-        "cz-conventional-changelog": "^3.0.2",
         "eslint": "^6.2.2",
         "eslint-config-prettier": "^6.1.0",
         "eslint-config-wanews-base": "^2.0.0",
-        "jest": "^24.8.0",
-        "semantic-release": "^15.13.19",
+        "jest": "^24.9.0",
         "ts-jest": "^24.0.2",
         "tslib": "^1.10.0",
-        "typescript": "^3.5.3"
+        "typescript": "^3.6.2"
     },
     "peerDependencies": {
         "tslib": "^1.10.0"
