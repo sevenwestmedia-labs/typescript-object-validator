@@ -4,6 +4,7 @@
     "description": "TypeScript first object validator",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "sideEffects": false,
     "scripts": {
         "prepack": "yarn build",
         "build": "yarn build:es2015 && yarn build:cjs",
