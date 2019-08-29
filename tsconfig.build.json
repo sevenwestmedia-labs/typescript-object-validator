@@ -1,7 +1,13 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "noEmit": false /* Do not emit outputs. */
+        "noEmit": false,
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true
     },
     "include": ["src/index.ts"]
 }
