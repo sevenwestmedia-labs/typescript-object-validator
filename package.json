@@ -4,6 +4,7 @@
     "description": "TypeScript first object validator",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "sideEffects": false,
     "scripts": {
         "prepack": "yarn build",
         "build": "yarn build:es2015 && yarn build:cjs",
@@ -21,7 +22,7 @@
         "@typescript-eslint/parser": "^2.0.0",
         "eslint": "^6.2.2",
         "eslint-config-prettier": "^6.1.0",
-        "eslint-config-wanews-base": "^2.0.0",
+        "eslint-config-wanews-base": "^2.0.1",
         "jest": "^24.9.0",
         "ts-jest": "^24.0.2",
         "tslib": "^1.10.0",
