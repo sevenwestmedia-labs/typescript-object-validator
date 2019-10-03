@@ -9,17 +9,17 @@ export type ValidatedType<
         ? string | undefined
         : O extends 'boolean'
         ? boolean | undefined
-        : O extends 'string'[]
+        : O extends Array<'string'>
         ? string[] | undefined
-        : O extends 'number'[]
+        : O extends Array<'number'>
         ? number[] | undefined
-        : O extends 'boolean'[]
+        : O extends Array<'boolean'>
         ? boolean[] | undefined
         : O extends ObjectShape<O>
         ? { [key in keyof O]: ValidatedType<O[key]> } | undefined
-        : O extends (infer U)[]
+        : O extends Array<infer U>
         ? U extends ObjectShape<T>
-            ? { [key in keyof U]: ValidatedType<U[key]> }[] | undefined
+            ? Array<{ [key in keyof U]: ValidatedType<U[key]> }> | undefined
             : unknown
         : unknown
     : T extends 'unknown'
@@ -30,17 +30,17 @@ export type ValidatedType<
     ? string
     : T extends 'boolean'
     ? boolean
-    : T extends 'string'[]
+    : T extends Array<'string'>
     ? string[]
-    : T extends 'number'[]
+    : T extends Array<'number'>
     ? number[]
-    : T extends 'boolean'[]
+    : T extends Array<'boolean'>
     ? boolean[]
     : T extends ObjectShape<object>
     ? { [key in keyof T]: ValidatedType<T[key]> }
-    : T extends (infer U)[]
+    : T extends Array<infer U>
     ? U extends ObjectShape<object>
-        ? { [key in keyof U]: ValidatedType<U[key]> }[]
+        ? Array<{ [key in keyof U]: ValidatedType<U[key]> }>
         : unknown
     : unknown
 
@@ -62,11 +62,11 @@ export type ValidationKeyType<T = object> =
     | 'number'
     | 'string'
     | 'boolean'
-    | 'string'[]
-    | 'number'[]
-    | 'boolean'[]
+    | Array<'string'>
+    | Array<'number'>
+    | Array<'boolean'>
     | ObjectShape<T>
-    | ObjectShape<T>[]
+    | Array<ObjectShape<T>>
 
 // While not required, when using string literals (ie 'string'),
 // once the shape gets complicated enough, TypeScript starts treating the
@@ -79,9 +79,9 @@ export const validationTypes = {
     string: 'string' as 'string',
     number: 'number' as 'number',
     boolean: 'boolean' as 'boolean',
-    stringArray: ['string'] as 'string'[],
-    booleanArray: ['boolean'] as 'boolean'[],
-    numberArray: ['number'] as 'number'[]
+    stringArray: ['string'] as Array<'string'>,
+    booleanArray: ['boolean'] as Array<'boolean'>,
+    numberArray: ['number'] as Array<'number'>
 }
 
 // We need this generic type so we can merge ObjectShapes and not lose info

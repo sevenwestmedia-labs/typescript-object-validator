@@ -1,3 +1,6 @@
 {
-    "extends": ["wanews-base"]
+    "extends": ["wanews-base"],
+    "rules": {
+        "@typescript-eslint/array-type": [2, { "default": "array-simple" }]
+    }
 }
