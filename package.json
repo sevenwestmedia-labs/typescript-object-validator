@@ -1,9 +1,10 @@
 {
     "name": "typescript-object-validator",
-    "version": "0.0.0",
+    "version": "1.0.4",
     "description": "TypeScript first object validator",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
+    "types": "dist/cjs/index.d.ts",
     "sideEffects": false,
     "scripts": {
         "prepack": "yarn build",
@@ -12,23 +13,28 @@
         "build:cjs": "tsc -p tsconfig.build.json --module commonjs --target es5 --outDir dist/cjs",
         "lint": "eslint --ext .js,.ts src",
         "test": "jest",
-        "verify": "yarn tsc -p tsconfig.json && yarn test && yarn lint"
+        "verify": "yarn tsc -p tsconfig.json && yarn test && yarn lint && yarn build && yarn tsd",
+        "changeset": "changeset",
+        "release": "yarn verify && changeset publish"
     },
     "author": "Jake Ginnivan",
     "license": "MIT",
     "devDependencies": {
-        "@types/jest": "^24.0.18",
-        "@typescript-eslint/eslint-plugin": "^2.3.2",
-        "@typescript-eslint/parser": "^2.3.2",
-        "eslint": "^6.5.1",
-        "eslint-config-prettier": "^6.3.0",
-        "eslint-config-wanews-base": "^2.0.2",
+        "@changesets/cli": "^2.4.1",
+        "@types/jest": "^24.9.0",
+        "@typescript-eslint/eslint-plugin": "^2.17.0",
+        "@typescript-eslint/parser": "^2.17.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.9.0",
+        "eslint-config-wanews-base": "^2.1.1",
         "jest": "^24.9.0",
-        "ts-jest": "^24.1.0",
+        "ts-jest": "^24.3.0",
+        "tsd": "^0.11.0",
         "tslib": "^1.10.0",
-        "typescript": "^3.6.3"
+        "typescript": "^3.7.5"
     },
     "peerDependencies": {
         "tslib": "^1.10.0"
-    }
+    },
+    "dependencies": {}
 }
