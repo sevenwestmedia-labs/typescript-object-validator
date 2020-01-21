@@ -79,3 +79,34 @@ const nestedResult = validateObjectShape(
 if (nestedResult.valid) {
     expectType<NestedResultType>(nestedResult.result)
 }
+
+interface NestedArrayResultType {
+    nested: Array<{
+        one: string
+    }>
+    optional:
+        | Array<{
+              one: string
+          }>
+        | undefined
+}
+const objectArray = validateObjectShape(
+    'Test obj',
+    {
+        nested: [{ one: 'one' }]
+    },
+    {
+        nested: arrayOf({
+            one: 'string'
+        }),
+        optional: optional(
+            arrayOf({
+                one: 'string'
+            })
+        )
+    }
+)
+
+if (objectArray.valid) {
+    expectType<NestedArrayResultType>(objectArray.result)
+}

@@ -18,8 +18,8 @@ export type ValidatedType<
         : O extends ObjectShape<O>
         ? MapObjectShape<O> | undefined
         : O extends Array<infer U>
-        ? U extends ObjectShape<T>
-            ? Array<{ [key in keyof U]: ValidatedType<U[key]> }> | undefined
+        ? U extends ObjectShape<U>
+            ? Array<MapObjectShape<U>> | undefined
             : unknown
         : unknown
     : T extends 'unknown'
@@ -36,17 +36,17 @@ export type ValidatedType<
     ? number[]
     : T extends Array<'boolean'>
     ? boolean[]
-    : T extends ObjectShape<object>
-    ? { [key in keyof T]: ValidatedType<T[key]> }
+    : T extends ObjectShape<T>
+    ? MapObjectShape<T>
     : T extends Array<infer U>
-    ? U extends ObjectShape<object>
-        ? Array<{ [key in keyof U]: ValidatedType<U[key]> }>
+    ? U extends ObjectShape<U>
+        ? Array<MapObjectShape<U>>
         : unknown
     : unknown
 
-type MapObjectShape<T extends ObjectShape<T>> =
-    | { [key in keyof T]: ValidatedType<T[key]> }
-    | undefined
+type MapObjectShape<T extends ObjectShape<T>> = {
+    [key in keyof T]: ValidatedType<T[key]>
+}
 
 export interface ValidationOptions {
     /**
@@ -89,8 +89,6 @@ export const validationTypes = {
 }
 
 // We need this generic type so we can merge ObjectShapes and not lose info
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 export type ObjectShape<T extends {}> = {
     [key in keyof T]: ValidationKeyType<T[key]> | OptionalShape<T[key]>
 }
