@@ -201,6 +201,35 @@ it('allows converting a number into a string', () => {
     })
 })
 
+it('allows coercing a boolean string/number into a boolean', () => {
+    const result1 = validateObjectShape(
+        'Test obj',
+        {
+            testBooleanNumber: 1,
+            testBooleanNumberFalse: 0,
+            testBooleanString: 'true',
+            testBooleanStringFalse: 'false'
+        },
+        {
+            testBooleanNumber: 'boolean',
+            testBooleanNumberFalse: 'boolean',
+            testBooleanString: 'boolean',
+            testBooleanStringFalse: 'boolean'
+        },
+        { coerceBooleans: true }
+    )
+
+    expect(result1).toMatchObject({
+        valid: true,
+        result: {
+            testBooleanNumber: true,
+            testBooleanNumberFalse: false,
+            testBooleanString: true,
+            testBooleanStringFalse: false
+        }
+    })
+})
+
 it('when wrapping an item in a array ensure it coerced correctly', () => {
     const result1 = validateObjectShape(
         'Test obj',
