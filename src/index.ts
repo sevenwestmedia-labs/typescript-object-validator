@@ -54,6 +54,7 @@ export interface ValidationOptions {
      * be valid if inside an array, it will automatically be wrapped
      */
     coerceValidObjectIntoArray?: boolean
+    coerceBooleans?: boolean
 }
 
 export interface OptionalShape<T> {
@@ -240,6 +241,15 @@ export function validateValue<T extends ValidationKeyType<any>>(
 
     if (valueType === 'boolean') {
         if (typeof value !== 'boolean') {
+            if (options.coerceBooleans) {
+                if (value === 'true' || value === 1) {
+                    return { valid: true, result: true }
+                }
+                if (value === 'false' || value === 0) {
+                    return { valid: true, result: false }
+                }
+            }
+
             const errorMessage = `Expected ${valueDescription} to be type: boolean, was ${typeof value}`
             return {
                 valid: false,
