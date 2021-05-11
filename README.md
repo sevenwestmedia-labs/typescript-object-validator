@@ -1,3 +1,7 @@
+# WARNING: This repository is no longer maintained
+
+Consider [Zod](https://github.com/colinhacks/zod) as an alternative
+
 # Typescript Object Validator
 
 A simple library for typescript projects to validating object shapes. You can use this package to declare the shape you'd like an object to align to. This is handy when you have a complex object (for example, an API response) and want to validate the object, AND have typescript recognize the shape.
